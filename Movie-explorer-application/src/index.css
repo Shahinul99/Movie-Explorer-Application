@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+:root {
+  --bg: #0b0e14;
+  --surface: #151a24;
+  --surface-2: #1c2230;
+  --gold: #e8b34c;
+  --red: #c1443c;
+  --text: #f5f3ee;
+  --muted: #9aa1ac;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: 'Fraunces', Georgia, serif;
+}
