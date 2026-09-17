@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 :root {
   --bg: #0b0e14;
   --surface: #151a24;
@@ -10,13 +8,25 @@
   --muted: #9aa1ac;
 }
 
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 .font-display {
   font-family: 'Fraunces', Georgia, serif;
+}
+
+.film-strip {
+  height: 10px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--gold) 0 8px,
+    transparent 8px 20px
+  );
+  opacity: 0.55;
 }
