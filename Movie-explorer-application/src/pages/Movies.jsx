@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAllShows, searchShows } from "../api/tvmaze";
-import SearchBar from "../components/SearchBar";
-import MovieCard from "../components/MovieCard";
-import MovieModal from "../components/MovieModal";
+import SearchBar from "../componets/SearchBar";
+import MovieCard from "../componets/MovieCard";
+import MovieModal from "../componets/MovieModal";
 
 export default function Movies() {
   const [query, setQuery] = useState("");
@@ -24,7 +24,7 @@ export default function Movies() {
           data = await searchShows(query);
         }
         setShows(data);
-      } catch (error) {
+      } catch {
         setError("Something went wrong. Please try again.");
       } finally {
         setLoading(false);
