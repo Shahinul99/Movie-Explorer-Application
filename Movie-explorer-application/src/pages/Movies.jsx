@@ -5,57 +5,56 @@ import MovieCard from "../components/MovieCard";
 import MovieModal from "../components/MovieModal";
 
 export default function Movies() {
-const [query, setQuery] = useState("");
-const [shows, setShows] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState("");
-const [selectedShow, setSelectedShow] = useState(null);
+  const [query, setQuery] = useState("");
+  const [shows, setShows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [selectedShow, setSelectedShow] = useState(null);
 
-useEffect(() => {
+  useEffect(() => {
     async function loadShows() {
-    setLoading(true);
-    setError("");
+      setLoading(true);
+      setError("");
 
-    try {
+      try {
         let data;
         if (query.trim() === "") {
-        data = await getAllShows();
+          data = await getAllShows();
         } else {
-        data = await searchShows(query);
+          data = await searchShows(query);
         }
         setShows(data);
-    } catch (err) {
-        console.error(err);
+      } catch (err) {
         setError("Something went wrong. Please try again.");
-    } finally {
+      } finally {
         setLoading(false);
-    }
+      }
     }
 
     loadShows();
-}, [query]);
+  }, [query]);
 
-return (
+  return (
     <div className="max-w-6xl mx-auto px-6 py-10 flex-1 w-full">
-    <h1 className="font-display text-3xl font-semibold text-center mb-8">
+      <h1 className="font-display text-3xl font-semibold text-center mb-8">
         Browse Movies
-    </h1>
+      </h1>
 
-    <SearchBar value={query} onChange={setQuery} />
+      <SearchBar value={query} onChange={setQuery} />
 
-    {loading && <p className="text-center text-[var(--muted)]">Loading…</p>}
-    {error && <p className="text-center text-[var(--red)]">{error}</p>}
-    {!loading && !error && shows.length === 0 && (
+      {loading && <p className="text-center text-[var(--muted)]">Loading…</p>}
+      {error && <p className="text-center text-[var(--red)]">{error}</p>}
+      {!loading && !error && shows.length === 0 && (
         <p className="text-center text-[var(--muted)]">No movies found.</p>
-    )}
+      )}
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {shows.map((show) => (
-        <MovieCard key={show.id} show={show} onSeeDetails={setSelectedShow} />
+          <MovieCard key={show.id} show={show} onSeeDetails={setSelectedShow} />
         ))}
-    </div>
+      </div>
 
-    <MovieModal show={selectedShow} onClose={() => setSelectedShow(null)} />
+      <MovieModal show={selectedShow} onClose={() => setSelectedShow(null)} />
     </div>
-);
+  );
 }
