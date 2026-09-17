@@ -24,7 +24,7 @@ export default function Movies() {
           data = await searchShows(query);
         }
         setShows(data);
-      } catch (error) {
+      } catch (err) {
         setError("Something went wrong. Please try again.");
       } finally {
         setLoading(false);
